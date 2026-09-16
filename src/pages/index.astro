@@ -111,7 +111,7 @@ import { monogram } from "../utils/monogram";
             class="mt-6 flex flex-wrap items-center justify-center gap-3"
             hidden
         >
-            <p class="m-0 text-sm text-muted">
+            <p id="tech-more-label" class="m-0 text-sm text-muted">
                 en nog <span id="tech-more-count">0</span> meer
             </p>
             <button
@@ -120,6 +120,14 @@ import { monogram } from "../utils/monogram";
                 class="rounded-xl border border-line bg-surface px-4 py-2 text-sm font-medium text-body transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
             >
                 Alles tonen
+            </button>
+            <button
+                id="tech-show-less"
+                type="button"
+                class="rounded-xl border border-line bg-surface px-4 py-2 text-sm font-medium text-body transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+                hidden
+            >
+                Minder tonen
             </button>
         </div>
 
@@ -152,8 +160,10 @@ import { monogram } from "../utils/monogram";
             const list = document.getElementById("tech-list");
             const status = document.getElementById("tech-status");
             const more = document.getElementById("tech-more");
+            const moreLabel = document.getElementById("tech-more-label");
             const moreCount = document.getElementById("tech-more-count");
             const showAll = document.getElementById("tech-show-all");
+            const showLess = document.getElementById("tech-show-less");
             const LIMIT = 18;
 
             const items = Array.from(list.querySelectorAll("li"));
@@ -181,7 +191,11 @@ import { monogram } from "../utils/monogram";
                 }
 
                 const remaining = capped ? Math.max(0, matches - LIMIT) : 0;
-                more.hidden = remaining === 0;
+                const collapsible = expanded && !filtering;
+                more.hidden = remaining === 0 && !collapsible;
+                moreLabel.hidden = collapsible;
+                showAll.hidden = collapsible;
+                showLess.hidden = !collapsible;
                 moreCount.textContent = String(remaining);
 
                 status.textContent = !filtering
@@ -193,6 +207,11 @@ import { monogram } from "../utils/monogram";
 
             showAll.addEventListener("click", () => {
                 expanded = true;
+                render();
+            });
+
+            showLess.addEventListener("click", () => {
+                expanded = false;
                 render();
             });
 
