@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-ink: #121212;
+    --color-symbol: #ffffff;
+
+    --color-surface: #171717;
+    --color-surface-hover: #262626;
+    --color-line: #262626;
+    --color-line-hover: #525252;
+    --color-body: #d4d4d4;
+    --color-muted: #a3a3a3;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-ink: #ffffff;
+        --color-symbol: #121212;
+
+        --color-surface: #f5f5f5;
+        --color-surface-hover: #e5e5e5;
+        --color-line: #e5e5e5;
+        --color-line-hover: #a3a3a3;
+        --color-body: #404040;
+        --color-muted: #737373;
+    }
+}
+
+@layer base {
+    html {
+        @apply bg-ink;
+        color-scheme: dark light;
+    }
+
+    body {
+        @apply mx-auto max-w-3xl px-6 py-12 text-body;
+    }
+
+    h1 {
+        @apply text-3xl font-bold tracking-tight text-symbol;
+    }
+
+    h2 {
+        @apply mt-10 text-xl font-semibold tracking-tight text-symbol;
+    }
+
+    p {
+        @apply mt-3 leading-relaxed;
+    }
+
+    a {
+        @apply text-symbol underline underline-offset-2 hover:text-muted;
+    }
+
+    ::selection {
+        @apply bg-symbol text-ink;
+    }
+}
+
+@layer components {
+    .tech-icon {
+        fill: var(--icon-on-dark, currentColor);
+    }
+
+    @media (prefers-color-scheme: light) {
+        .tech-icon {
+            fill: var(--icon-on-light, currentColor);
+        }
+    }
+}

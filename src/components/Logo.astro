@@ -1,0 +1,27 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 460 460"
+    role="img"
+    aria-label="Logo van Max van der Wolf"
+    class={className}
+>
+    <defs>
+        <clipPath id="logo-disc">
+            <circle cx="232" cy="232" r="191" />
+        </clipPath>
+    </defs>
+    <circle cx="232" cy="232" r="191" class="fill-symbol" />
+    <g clip-path="url(#logo-disc)" class="fill-ink">
+        <rect x="150" y="150" width="32" height="310" rx="15" />
+        <rect x="215" y="150" width="32" height="165" rx="15" />
+        <rect x="283" y="0" width="32" height="309" rx="15" />
+    </g>
+</svg>
