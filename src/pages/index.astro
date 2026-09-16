@@ -39,8 +39,11 @@ import { monogram } from "../utils/monogram";
             kritisch en zelfstandig.
         </p>
         <h2>Technologieën, talen en frameworks</h2>
-        <p>Dit zijn een paar van de dingen die ik ken</p>
-        <div class="relative mt-6">
+        <p>
+            Een selectie van de technologieën, talen en frameworks die ik ken en
+            gebruik.
+        </p>
+        <search class="relative mt-6 block">
             <label class="sr-only" for="tech-search">
                 Zoek in technologieën
             </label>
@@ -59,12 +62,15 @@ import { monogram } from "../utils/monogram";
             <input
                 id="tech-search"
                 type="search"
-                placeholder="Zoek technologie waar ik evaring in heb…"
+                name="tech-query"
+                placeholder="Zoek een technologie…"
                 autocomplete="off"
+                autocapitalize="off"
                 spellcheck="false"
+                enterkeyhint="search"
                 class="w-full rounded-xl border border-line bg-surface py-2.5 pr-4 pl-10 text-sm text-body transition placeholder:text-muted focus-visible:border-line-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
             />
-        </div>
+        </search>
         <p id="tech-status" role="status" class="mt-3 text-sm text-muted"></p>
         <ul
             id="tech-list"
@@ -132,31 +138,93 @@ import { monogram } from "../utils/monogram";
         </div>
 
         <h2>Persoonlijke projecten</h2>
-        <p></p>
-        <h2>Opleidingen</h2>
-        <p></p>
-        <h2>Werk evaring</h2>
-        <p>Ik heb bij deze bedrijven gewerkt:</p>
+        <p>
+            Een selectie van projecten die ik heb gebouwd en daadwerkelijk
+            online heb gezet:
+        </p>
         <ul class="mt-3 list-disc space-y-2 pl-6">
             <li>
-                <strong>2023–2024 — Software Developer</strong>
+                <strong>2025–heden - Zoryal.com</strong>
                 <br />
-                Ministerie van Financiën, Den Haag
-                <br />
-                <a href="https://www.linkedin.com/in/marvinalibahadoer">
-                    Contact mijn oude werkgever
-                </a>
+                AI kunst platform (JavaScript, Go, WebGL)
             </li>
             <li>
-                <strong>2022–2023 — DevOps</strong>
+                <strong>2023–heden - Spoonful bot</strong>
                 <br />
-                Gemeente Rotterdam, Rotterdam
+                Modulaire Discord bot met ondersteuning voor meerdere accounts
+                en configuraties (JavaScript)
+            </li>
+            <li>
+                <strong>2022–heden - SplashOS.com</strong>
                 <br />
-                <a href="https://www.linkedin.com/in/eddievisser/">
-                    Contact mijn oude werkgever
-                </a>
+                Linux gebaseerd besturingssysteem (C, Rust, Python)
+            </li>
+            <li>
+                <strong>2020–2023 - WatchCreo.com</strong>
+                <br />
+                Video platform in de stijl van YouTube (PHP)
+            </li>
+            <li>
+                <strong>2018–2019 - iLoot.it</strong>
+                <br />
+                Advertentieplatform voor gamers (PHP)
+            </li>
+            <li>
+                <strong>2015–2019 - Enthix.net</strong>
+                <br />
+                Minecraft server (Java)
+            </li>
+            <li>
+                <strong>2011–2015 - Maxspel.nl</strong>
+                <br />
+                Flash gamingwebsite (HTML, CSS, JavaScript)
             </li>
         </ul>
+        <div class="grid gap-8 md:grid-cols-2">
+            <section>
+                <h2>Opleidingen</h2>
+                <p>De opleidingen die ik heb gevolgd:</p>
+                <ul class="mt-3 list-disc space-y-2 pl-6">
+                    <li>
+                        <strong>
+                            2025-heden - HBO Associate Degree Software
+                            Development
+                        </strong>
+                        <br />
+                        Hogeschool Rotterdam, Rotterdam
+                    </li>
+                    <li>
+                        <strong>2022-2024 - MBO 4 Software Developer</strong>
+                        <br />
+                        Techniek College Rotterdam, Rotterdam
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Werkervaring</h2>
+                <p>De bedrijven waar ik heb gewerkt:</p>
+                <ul class="mt-3 list-disc space-y-2 pl-6">
+                    <li>
+                        <strong>2023–2024 - Software Developer</strong>
+                        <br />
+                        Ministerie van Financiën, Den Haag
+                        <br />
+                        <a href="https://www.linkedin.com/in/marvinalibahadoer">
+                            Contact mijn oude werkgever
+                        </a>
+                    </li>
+                    <li>
+                        <strong>2022–2023 - DevOps</strong>
+                        <br />
+                        Gemeente Rotterdam, Rotterdam
+                        <br />
+                        <a href="https://www.linkedin.com/in/eddievisser/">
+                            Contact mijn oude werkgever
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
         <script>
             const input = document.getElementById("tech-search");
             const list = document.getElementById("tech-list");
