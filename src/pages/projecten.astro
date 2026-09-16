@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { projects } from "../data/profile";
+---
+
+<BaseLayout title="Projecten - Max van der Wolf">
+    <h1>Projecten</h1>
+    <p>
+        Sinds dat ik 11 jaar was in 2011 bouw ik eigen projecten. Elke project
+        die ik heb gemaakt zijn bedoeld voor echte gebruikers. all deze
+        projecten hebben online gestaan of staan nu nogsteeds online
+    </p>
+
+    {projects.map((project) => (
+        <article class="card mt-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h2 class="mt-0">{project.name}</h2>
+                <span class="text-sm text-muted">{project.period}</span>
+            </div>
+            <p class="mt-1 font-medium text-symbol">{project.tagline}</p>
+            <p>{project.description}</p>
+
+            <h3>Mijn rol</h3>
+            <p>{project.role}</p>
+
+            <h3>Technieken</h3>
+            <ul class="mt-2 flex list-none flex-wrap gap-2 p-0">
+                {project.techniques.map((technique) => (
+                    <li>
+                        <span class="chip">{technique}</span>
+                    </li>
+                ))}
+            </ul>
+
+            <h3>Wat ik ervan leerde</h3>
+            <p>{project.learned}</p>
+
+            {(project.liveUrl || project.githubUrl) && (
+                <p class="mt-4 flex flex-wrap gap-3">
+                    {project.liveUrl && (
+                        <a
+                            class="btn-secondary"
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Bekijk site
+                        </a>
+                    )}
+                </p>
+            )}
+        </article>
+    ))}
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+import Logo from "../components/Logo.astro";
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+const nav = [
+    { href: "/", label: "Home" },
+    { href: "/projecten/", label: "Projecten" },
+];
+
+const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isActive = (href: string) =>
+    (href.replace(/\/+$/, "") || "/") === current;
+---
+
+<!doctype html>
+<html lang="nl">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="color-scheme" content="dark light" />
+        <meta
+            name="theme-color"
+            content="#121212"
+            media="(prefers-color-scheme: dark)"
+        />
+        <meta
+            name="theme-color"
+            content="#ffffff"
+            media="(prefers-color-scheme: light)"
+        />
+        <title>{title}</title>
+        <meta
+            name="description"
+            content={
+                description ??
+                "Software developer met interesse in full-stack development, AI en DevOps."
+            }
+        />
+        <link rel="canonical" href={canonical} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta
+            property="og:description"
+            content={
+                description ??
+                "Software developer met interesse in full-stack development, AI en DevOps."
+            }
+        />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:site_name" content="Max van der Wolf" />
+    </head>
+    <body>
+        <header class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+            <a href="/" class="flex items-center gap-3 no-underline">
+                <Logo class="h-10 w-10 shrink-0" />
+                <span class="text-sm font-semibold tracking-tight text-symbol">
+                    Max van der Wolf
+                </span>
+            </a>
+            <nav>
+                <ul class="m-0 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-sm">
+                    {nav.map((item) => (
+                        <li>
+                            <a
+                                href={item.href}
+                                class:list={[
+                                    "no-underline transition hover:text-symbol",
+                                    isActive(item.href)
+                                        ? "font-semibold text-symbol underline underline-offset-4"
+                                        : "text-muted",
+                                ]}
+                            >
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </header>
+        <main id="main-content" class="mt-10">
+            <slot />
+        </main>
+    </body>
+</html>

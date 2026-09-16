@@ -45,6 +45,10 @@
         @apply mt-10 text-xl font-semibold tracking-tight text-symbol;
     }
 
+    h3 {
+        @apply mt-6 text-base font-semibold tracking-tight text-symbol;
+    }
+
     p {
         @apply mt-3 leading-relaxed;
     }
@@ -67,5 +71,29 @@
         .tech-icon {
             fill: var(--icon-on-light, currentColor);
         }
+    }
+
+    .skip-link {
+        @apply sr-only;
+    }
+
+    .skip-link:focus-visible {
+        @apply fixed top-4 left-4 z-50 rounded-xl bg-symbol px-4 py-2 text-sm font-medium text-ink not-sr-only;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center gap-2 rounded-xl bg-symbol px-5 py-2.5 text-sm font-semibold text-ink no-underline transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center gap-2 rounded-xl border border-line bg-surface px-5 py-2.5 text-sm font-medium text-body no-underline transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol;
+    }
+
+    .card {
+        @apply rounded-2xl border border-line bg-surface p-6;
+    }
+
+    .chip {
+        @apply inline-block rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-body;
     }
 }
