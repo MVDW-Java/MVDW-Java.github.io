@@ -106,6 +106,23 @@ import { monogram } from "../utils/monogram";
                 );
             })}
         </ul>
+        <div
+            id="tech-more"
+            class="mt-6 flex flex-wrap items-center justify-center gap-3"
+            hidden
+        >
+            <p class="m-0 text-sm text-muted">
+                en nog <span id="tech-more-count">0</span> meer
+            </p>
+            <button
+                id="tech-show-all"
+                type="button"
+                class="rounded-xl border border-line bg-surface px-4 py-2 text-sm font-medium text-body transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+            >
+                Alles tonen
+            </button>
+        </div>
+
         <h2>Persoonlijke projecten</h2>
         <p></p>
         <h2>Opleidingen</h2>
@@ -134,30 +151,53 @@ import { monogram } from "../utils/monogram";
             const input = document.getElementById("tech-search");
             const list = document.getElementById("tech-list");
             const status = document.getElementById("tech-status");
+            const more = document.getElementById("tech-more");
+            const moreCount = document.getElementById("tech-more-count");
+            const showAll = document.getElementById("tech-show-all");
+            const LIMIT = 18;
 
-            if (input instanceof HTMLInputElement && list && status) {
-                const items = Array.from(list.querySelectorAll("li"));
-                const total = items.length;
+            const items = Array.from(list.querySelectorAll("li"));
+            const total = items.length;
+            let expanded = false;
 
-                const update = () => {
-                    const query = input.value.trim().toLowerCase();
-                    let matches = 0;
+            const render = () => {
+                const raw = input.value.trim();
+                const query = raw.toLowerCase();
+                const filtering = query.length > 0;
+                let matches = 0;
 
+                for (const item of items) {
+                    const hit = (item.dataset.name || "").includes(query);
+                    item.hidden = !hit;
+                    if (hit) matches++;
+                }
+
+                const capped = !filtering && !expanded;
+                if (capped) {
+                    let shown = 0;
                     for (const item of items) {
-                        const hit = (item.dataset.name ?? "").includes(query);
-                        item.hidden = !hit;
-                        if (hit) matches++;
+                        if (!item.hidden && ++shown > LIMIT) item.hidden = true;
                     }
+                }
 
-                    status.textContent = !query
-                        ? ""
-                        : matches === 0
-                          ? `Geen technologieën gevonden voor “${input.value.trim()}”.`
-                          : `${matches} van ${total} technologieën`;
-                };
+                const remaining = capped ? Math.max(0, matches - LIMIT) : 0;
+                more.hidden = remaining === 0;
+                moreCount.textContent = String(remaining);
 
-                input.addEventListener("input", update);
-            }
+                status.textContent = !filtering
+                    ? ""
+                    : matches === 0
+                      ? `Geen technologieën gevonden voor “${raw}”.`
+                      : `${matches} van ${total} technologieën`;
+            };
+
+            showAll.addEventListener("click", () => {
+                expanded = true;
+                render();
+            });
+
+            input.addEventListener("input", render);
+            render();
         </script>
     </body>
 </html>
