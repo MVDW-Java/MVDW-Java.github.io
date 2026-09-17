@@ -1,0 +1,247 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { technologies } from "../data/technologies";
+import { skillCategories } from "../data/profile";
+import { onDark, onLight } from "../utils/contrast";
+import { monogram } from "../utils/monogram";
+
+const categoryOrder = [
+    "Programmeertalen",
+    "Frameworks en libraries",
+    "Tools en platforms",
+    "Development en DevOps",
+];
+
+const grouped = categoryOrder.map((category) => ({
+    category,
+    items: technologies.filter((tech) => tech.category === category),
+}));
+---
+
+<BaseLayout title="Vaardigheden — Max van der Wolf">
+    <h1>Vaardigheden</h1>
+    <p>
+        Een overzicht van de talen, frameworks en tools die ik ken en gebruik,
+        ingedeeld per categorie. Onderaan vind je de volledige lijst.
+    </p>
+
+    <search class="relative mt-6 block">
+        <label class="sr-only" for="tech-search">
+            Zoek in technologieën
+        </label>
+        <svg
+            class="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-muted"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+        >
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <input
+            id="tech-search"
+            type="search"
+            name="tech-query"
+            placeholder="Zoek een technologie…"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            enterkeyhint="search"
+            class="w-full rounded-xl border border-line bg-surface py-2.5 pr-4 pl-10 text-sm text-body transition placeholder:text-muted focus-visible:border-line-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+        />
+    </search>
+    <p id="tech-status" role="status" class="mt-3 text-sm text-muted"></p>
+    <ul
+        id="tech-flat"
+        class="mt-6 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+    >
+        {technologies.map((tech) => {
+            const Tag = tech.url ? "a" : "div";
+            return (
+                <li data-name={tech.name.toLowerCase()}>
+                    <Tag
+                        href={tech.url}
+                        target={tech.url ? "_blank" : undefined}
+                        rel={tech.url ? "noopener noreferrer" : undefined}
+                        class="group flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-line bg-surface p-3 text-center text-body no-underline transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+                    >
+                        {tech.path ? (
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="tech-icon h-8 w-8 shrink-0"
+                                style={`--icon-on-dark: ${onDark(tech.hex)}; --icon-on-light: ${onLight(tech.hex)}`}
+                                aria-hidden="true"
+                            >
+                                <path d={tech.path} />
+                            </svg>
+                        ) : (
+                            <span
+                                class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-hover text-xs font-semibold text-muted"
+                                aria-hidden="true"
+                            >
+                                {monogram(tech.name)}
+                            </span>
+                        )}
+                        <span class="text-xs font-medium leading-tight">
+                            {tech.name}
+                        </span>
+                    </Tag>
+                </li>
+            );
+        })}
+    </ul>
+    <div id="tech-grouped" class="mt-6 space-y-10" hidden>
+        {grouped.map(({ category, items }) => (
+            <section>
+                <h2>{category}</h2>
+                <ul class="mt-4 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                    {items.map((tech) => {
+                        const Tag = tech.url ? "a" : "div";
+                        return (
+                            <li data-name={tech.name.toLowerCase()}>
+                                <Tag
+                                    href={tech.url}
+                                    target={tech.url ? "_blank" : undefined}
+                                    rel={
+                                        tech.url
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                    class="group flex h-full flex-col items-center justify-center gap-2 rounded-xl border border-line bg-surface p-3 text-center text-body no-underline transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+                                >
+                                    {tech.path ? (
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            class="tech-icon h-8 w-8 shrink-0"
+                                            style={`--icon-on-dark: ${onDark(tech.hex)}; --icon-on-light: ${onLight(tech.hex)}`}
+                                            aria-hidden="true"
+                                        >
+                                            <path d={tech.path} />
+                                        </svg>
+                                    ) : (
+                                        <span
+                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-hover text-xs font-semibold text-muted"
+                                            aria-hidden="true"
+                                        >
+                                            {monogram(tech.name)}
+                                        </span>
+                                    )}
+                                    <span class="text-xs font-medium leading-tight">
+                                        {tech.name}
+                                    </span>
+                                </Tag>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </section>
+        ))}
+    </div>
+    <div
+        id="tech-more"
+        class="mt-6 flex flex-wrap items-center justify-center gap-3"
+        hidden
+    >
+        <p id="tech-more-label" class="m-0 text-sm text-muted">
+            en nog <span id="tech-more-count">0</span> meer
+        </p>
+        <button
+            id="tech-show-all"
+            type="button"
+            class="rounded-xl border border-line bg-surface px-4 py-2 text-sm font-medium text-body transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+        >
+            Alles tonen
+        </button>
+        <button
+            id="tech-show-less"
+            type="button"
+            class="rounded-xl border border-line bg-surface px-4 py-2 text-sm font-medium text-body transition hover:border-line-hover hover:bg-surface-hover hover:text-symbol focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-symbol"
+            hidden
+        >
+            Minder tonen
+        </button>
+    </div>
+
+    <script>
+        const input = document.getElementById("tech-search");
+        const flat = document.getElementById("tech-flat");
+        const groupedEl = document.getElementById("tech-grouped");
+        const status = document.getElementById("tech-status");
+        const more = document.getElementById("tech-more");
+        const moreLabel = document.getElementById("tech-more-label");
+        const moreCount = document.getElementById("tech-more-count");
+        const showAll = document.getElementById("tech-show-all");
+        const showLess = document.getElementById("tech-show-less");
+        const LIMIT = 18;
+
+        if (
+            input instanceof HTMLInputElement &&
+            flat &&
+            groupedEl &&
+            status &&
+            more &&
+            moreLabel &&
+            moreCount &&
+            showAll &&
+            showLess
+        ) {
+            const items = Array.from(flat.querySelectorAll("li"));
+            const total = items.length;
+            let expanded = false;
+
+            const render = () => {
+                const raw = input.value.trim();
+                const query = raw.toLowerCase();
+                const filtering = query.length > 0;
+                const showGrouped = expanded && !filtering;
+                groupedEl.hidden = !showGrouped;
+                flat.hidden = showGrouped;
+                let matches = 0;
+
+                for (const item of items) {
+                    const hit = (item.dataset.name || "").includes(query);
+                    item.hidden = !hit;
+                    if (hit) matches++;
+                }
+
+                const capped = !filtering && !expanded;
+                if (capped) {
+                    let shown = 0;
+                    for (const item of items) {
+                        if (!item.hidden && ++shown > LIMIT) item.hidden = true;
+                    }
+                }
+
+                const remaining = capped ? Math.max(0, matches - LIMIT) : 0;
+                const collapsible = expanded && !filtering;
+                more.hidden = remaining === 0 && !collapsible;
+                moreLabel.hidden = collapsible;
+                showAll.hidden = collapsible;
+                showLess.hidden = !collapsible;
+                moreCount.textContent = String(remaining);
+
+                status.textContent = !filtering
+                    ? ""
+                    : matches === 0
+                      ? `Geen technologieën gevonden voor “${raw}”.`
+                      : `${matches} van ${total} technologieën`;
+            };
+
+            showAll.addEventListener("click", () => {
+                expanded = true;
+                render();
+            });
+
+            showLess.addEventListener("click", () => {
+                expanded = false;
+                render();
+            });
+
+            input.addEventListener("input", render);
+            render();
+        }
+    </script>
+</BaseLayout>
