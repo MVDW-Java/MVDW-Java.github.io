@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { skillCategories } from "../data/profile";
+
+const strongPoints =
+    skillCategories.find((c) => c.title === "Persoonlijke vaardigheden")
+        ?.items ?? [];
+const interests =
+    skillCategories.find((c) => c.title === "Interesses")?.items ?? [];
+---
+
+<BaseLayout title="Over mij — Max van der Wolf">
+    <h1>Over mij</h1>
+    <p>
+        Ik hou van software maken die mensen echt gebruiken. of het voor een
+        Discord bot is of een website. ik vind het gaaf als ik iets bouw en
+        andere gaan het ook echt gebruiken. het behalen ven resultaten en
+        technische puzzels geven mij energie en wil altijd nieuwe technology
+        proberen om te kijken hoe het werkt en wat ik er mee kan doen.
+    </p>
+    <p>
+        Ik werk het liefst zelfstanding en bepaal mijn eigen aanpak maar het
+        doel en verwachting moet wel duidelijk zin. Als ik complexe probleemen
+        tegen kom vind ik het wel fijn om in een team te werken, dan sta ik er
+        niet helemaal alleen voor. binnen software development zoek ik altijd
+        naar afwisselingen, ik vind frontend and backend alle twee leuk en daar
+        wissel ik af wat ik doe. dit doe ik het liefst in een flexibele
+        werkomgeving(thuis werk) met ruimte om te experimenteren.
+    </p>
+    <p>
+        Sinds 2011 toen ik 11 jaar oud was bouwde ik al websites en ben begonnen
+        met een flash gaming website. hier heb ik de basis geleerd hoe een
+        website gebouwed moet gaan worden en zag dat andere ook echt gingen
+        spelen op mijn website. het echt doen van dingen heeft mij geleerd om
+        websites te bouwen en is hoe ik het beste leer.
+    </p>
+    <p>
+        Mijn ideale werkomgeving is informeel en er moet besluit over dingen
+        genomen worden want lagen aan middle management vind ik verschrikkelijk.
+        ik werk vaak zelfstandig aan dignen en dat zou ik willen doen bij een
+        startup of klein bedrijf. ik hou van innovatie, groei, vrijheid en
+        kwaliteit voor software developing bij een bedrijf. Ik heb ook interesse
+        in gaming, devops en AI en heb dus meer richting waar ik op kan gaan als
+        developer.
+    </p>
+
+    <section>
+        <h2>Waar ik voor sta</h2>
+        <p>
+            Als een developer die momenteel een HBO Associate Degree Software
+            Development doet wil ik kijken of ik iets heb over het hoofd heb
+            gezien toen ik zelf bezig was met experimenteren met software. Ik
+            zie me zelf niet als een expert op een gebied maar dat hoeft ook
+            niet. mijn kracht zit in de combinatie van het weten van
+            verschillende richtingen.
+        </p>
+    </section>
+
+    <section>
+        <h2>Sterke punten</h2>
+        <ul class="mt-3 flex list-none flex-wrap gap-2 p-0">
+            {strongPoints.map((point) => (
+                <li>
+                    <span class="chip">{point}</span>
+                </li>
+            ))}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Interesses</h2>
+        <ul class="mt-3 flex list-none flex-wrap gap-2 p-0">
+            {interests.map((interest) => (
+                <li>
+                    <span class="chip">{interest}</span>
+                </li>
+            ))}
+        </ul>
+    </section>
+</BaseLayout>

@@ -198,3 +198,36 @@ export const roadmap: RoadmapItem[] = [
     },
 
 ]
+
+
+export interface SkillCategory {
+    title: string;
+    description?: string;
+    items: string[];
+}
+
+export const skillCategories: SkillCategory[] = [
+
+    {
+        title: "Persoonlijke vaardigheden",
+        items: [
+            "Analytisch en kritisch denken",
+            "Zelfstandig werken",
+            "Problemen oplossen",
+            "Resultaat gericht werken",
+            "Nieuwe technologieën ondekken",
+            "Samenwerken bij complexe problemen",
+        ],
+    },
+    {
+        title: "Interesses",
+        items: [
+            "AI/ML",
+            "Gaming",
+            "UX/UI",
+            "Productontwikkeling",
+            "Fullstack development",
+            "DevOps",
+        ],
+    },
+];
