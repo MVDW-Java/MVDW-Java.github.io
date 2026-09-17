@@ -169,33 +169,32 @@ export const roadmap: RoadmapItem[] = [
     {
         period: "September-October",
         goals: [
-            "TODO"
+            "Persoonlijke leerdoelen bepalen",
+            "Portfolio en GitHub-profiel verbeteren",
+            "Plan maken voor de afstudeeropdracht",
+            "Werken aan herkansing Nederlands",
+            "Werken aan herkansing onboarding",
+            "Werken aan herkansing UX",
+            "Werken aan herkansing PV2",
+            "Werkplaats 5"
         ],
     },
     {
         period: "November-December",
         goals: [
-            "TODO"
+            "Herkansing Nederlands toets",
+            "Werken aan herkansing Wiskunde",
+            "Zoeken naar bedrijven",
+            "Werkplaats 6"
         ],
     },
     {
-        period: "Januari-Februari",
+        period: "Januari-Juni",
         goals: [
-            "TODO"
+            "Werken aan afstudeer opdracht"
         ],
     },
-    {
-        period: "Maart-April",
-        goals: [
-            "TODO"
-        ],
-    },
-    {
-        period: "Mei-Juni",
-        goals: [
-            "TODO"
-        ],
-    },
+
 
 ]
 
