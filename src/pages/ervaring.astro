@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { experience, education } from "../data/profile";
+---
+
+<BaseLayout title="Werkervaring & opleidingen — Max van der Wolf">
+    <h1>Werkervaring & opleidingen</h1>
+
+    <section>
+        <h2>Werkervaring</h2>
+        {experience.map((job) => (
+            <article class="card mt-4">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 class="mt-0">{job.role}</h3>
+                    <span class="text-sm text-muted">{job.period}</span>
+                </div>
+                <p class="mt-1 font-medium text-symbol">
+                    {job.organisation}, {job.location}
+                </p>
+                <p>{job.summary}</p>
+                {job.referenceUrl && (
+                    <p class="mt-3">
+                        <a
+                            href={job.referenceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {job.referenceLabel}
+                        </a>
+                    </p>
+                )}
+            </article>
+        ))}
+    </section>
+
+    <section>
+        <h2>Opleidingen</h2>
+        {education.map((study) => (
+            <article class="card mt-4">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 class="mt-0">{study.degree}</h3>
+                    <span class="text-sm text-muted">{study.period}</span>
+                </div>
+                <p class="mt-1 font-medium text-symbol">
+                    {study.school}, {study.location}
+                </p>
+                <p>{study.summary}</p>
+            </article>
+        ))}
+    </section>
+</BaseLayout>

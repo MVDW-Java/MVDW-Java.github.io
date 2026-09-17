@@ -97,3 +97,64 @@ export const projects: Project[] = [
             "TODO",
     },
 ];
+
+
+export interface Experience {
+    role: string;
+    organisation: string;
+    location: string;
+    period: string;
+    summary: string;
+    referenceUrl?: string;
+    referenceLabel?: string;
+}
+
+export const experience: Experience[] = [
+    {
+        role: "Software Developer",
+        organisation: "Ministerie van Financiën",
+        location: "Den Haag",
+        period: "2023–2024",
+        summary:
+            "Gewerkt als software developer binnen minfin, evaring opgedaan met WEM script en met squid proxy voor icap integratie",
+        referenceUrl: "https://www.linkedin.com/in/marvinalibahadoer",
+        referenceLabel: "Referentie: oud werkgever (LinkedIn)",
+    },
+    {
+        role: "DevOps",
+        organisation: "Gemeente Rotterdam",
+        location: "Rotterdam",
+        period: "2022–2023",
+        summary:
+            "Gewerkt in het DevOps team voor de scanauto's, evaring opgedaan met K8s/OpenShift voor het bouwen van container infra",
+        referenceUrl: "https://www.linkedin.com/in/eddievisser/",
+        referenceLabel: "Referentie: oud werkgever (LinkedIn)",
+    },
+];
+
+export interface Education {
+    degree: string;
+    school: string;
+    location: string;
+    period: string;
+    summary: string;
+}
+
+export const education: Education[] = [
+    {
+        degree: "HBO Associate Degree Software Development",
+        school: "Hogeschool Rotterdam",
+        location: "Rotterdam",
+        period: "2025–heden",
+        summary:
+            "Momenteel bezig met de Associate Degree Software Development aan de Hoogeschool Rotterdam.",
+    },
+    {
+        degree: "MBO 4 Software Developer",
+        school: "Techniek College Rotterdam",
+        location: "Rotterdam",
+        period: "2022–2024",
+        summary:
+            "Diploma behaald.",
+    },
+];
