@@ -158,3 +158,43 @@ export const education: Education[] = [
             "Diploma behaald.",
     },
 ];
+
+export interface RoadmapItem {
+    period: string;
+    goals: string[];
+}
+
+
+export const roadmap: RoadmapItem[] = [
+    {
+        period: "September-October",
+        goals: [
+            "TODO"
+        ],
+    },
+    {
+        period: "November-December",
+        goals: [
+            "TODO"
+        ],
+    },
+    {
+        period: "Januari-Februari",
+        goals: [
+            "TODO"
+        ],
+    },
+    {
+        period: "Maart-April",
+        goals: [
+            "TODO"
+        ],
+    },
+    {
+        period: "Mei-Juni",
+        goals: [
+            "TODO"
+        ],
+    },
+
+]

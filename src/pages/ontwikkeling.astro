@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { roadmap } from "../data/profile";
+---
+
+<BaseLayout title="Ontwikkeling & toekomst — Max van der Wolf">
+    <h1>Ontwikkeling & toekomst</h1>
+    <p>
+        Ik ben nog steeds aan het leren en dus ook aan het groeien. Ik hou van
+        experimenteren met technology en zeker in de richting full stack
+        development en devops.
+    </p>
+    <p>
+        De laatste tijd ben ik ook bezig geweest met AI/ML met hoe dat werkt en
+        hoe ik dit effectief kan toepassen.
+    </p>
+
+    <section>
+        <h2>Zo leer ik</h2>
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
+            <article class="card">
+                <h3 class="mt-0">Leren door te bouwen</h3>
+                <p class="m-0">
+                    Ik leer het beste door zelf projecten te maken en echt met
+                    iets aan de slag gaan inplaats van uit boeken lezen.
+                </p>
+            </article>
+            <article class="card">
+                <h3 class="mt-0">Visueel begrijpen</h3>
+                <p class="m-0">
+                    Visuele uitleg zoals video's en voorbeelden helpt mij om
+                    nieuwe concepten snel te begruipen.
+                </p>
+            </article>
+            <article class="card">
+                <h3 class="mt-0">Blijven ontdekken</h3>
+                <p class="m-0">
+                    Nieuwe technologieën wil ik blijven onderzoeken en
+                    uitproberen in kleine projecten voordat ik ze inzet in
+                    grotere projecten.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section>
+        <h2>Roadmap</h2>
+        <p>doelen voor de komende periodes.</p>
+        <ol class="mt-4 space-y-3">
+            {roadmap.map((item) => (
+                <li>
+                    <strong>{item.period}</strong>
+                    <br />
+                    <ul class="m-0 list-disc pl-5">
+                        {item.goals.map((goal) => (
+                            <li>{goal}</li>
+                        ))}
+                    </ul>
+                </li>
+            ))}
+        </ol>
+    </section>
+</BaseLayout>
